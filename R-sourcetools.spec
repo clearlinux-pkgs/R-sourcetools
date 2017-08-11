@@ -4,7 +4,7 @@
 #
 Name     : R-sourcetools
 Version  : 0.1.6
-Release  : 12
+Release  : 13
 URL      : https://cran.r-project.org/src/contrib/sourcetools_0.1.6.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/sourcetools_0.1.6.tar.gz
 Summary  : Tools for Reading, Tokenizing and Parsing R Code
@@ -14,7 +14,9 @@ Requires: R-sourcetools-lib
 BuildRequires : clr-R-helpers
 
 %description
-[![Travis-CI Build Status](https://travis-ci.org/kevinushey/sourcetools.svg?branch=master)](https://travis-ci.org/kevinushey/sourcetools) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/kevinushey/sourcetools?branch=master&svg=true)](https://ci.appveyor.com/project/kevinushey/sourcetools)
+'sourcetools' package provides both an R and C++ interface for the tokenization
+    of R code, and helpers for interacting with the tokenized representation of R
+    code.
 
 %package lib
 Summary: lib components for the R-sourcetools package.
@@ -32,11 +34,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1496612832
+export SOURCE_DATE_EPOCH=1502421225
 
 %install
 rm -rf %{buildroot}
-export SOURCE_DATE_EPOCH=1496612832
+export SOURCE_DATE_EPOCH=1502421225
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -54,11 +56,6 @@ echo "FFLAGS = $FFLAGS -march=haswell -ftree-vectorize " >> ~/.R/Makevars
 echo "CXXFLAGS = $CXXFLAGS -march=haswell -ftree-vectorize " >> ~/.R/Makevars
 R CMD INSTALL --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} --build  -l %{buildroot}/usr/lib64/R/library sourcetools
 for i in `find %{buildroot}/usr/lib64/R/ -name "*.so"`; do mv $i $i.avx2 ; mv $i.avx2 ~/.stash/; done
-echo "CFLAGS = $CFLAGS -march=skylake-avx512 -ftree-vectorize " > ~/.R/Makevars
-echo "FFLAGS = $FFLAGS -march=skylake-avx512 -ftree-vectorize " >> ~/.R/Makevars
-echo "CXXFLAGS = $CXXFLAGS -march=skylake-avx512 -ftree-vectorize " >> ~/.R/Makevars
-R CMD INSTALL --preclean --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} --build  -l %{buildroot}/usr/lib64/R/library sourcetools
-for i in `find %{buildroot}/usr/lib64/R/ -name "*.so"`; do mv $i $i.avx512 ; mv $i.avx512 ~/.stash/; done
 echo "CFLAGS = $CFLAGS -ftree-vectorize " > ~/.R/Makevars
 echo "FFLAGS = $FFLAGS -ftree-vectorize " >> ~/.R/Makevars
 echo "CXXFLAGS = $CXXFLAGS -ftree-vectorize " >> ~/.R/Makevars
@@ -135,4 +132,3 @@ cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 %defattr(-,root,root,-)
 /usr/lib64/R/library/sourcetools/libs/sourcetools.so
 /usr/lib64/R/library/sourcetools/libs/sourcetools.so.avx2
-/usr/lib64/R/library/sourcetools/libs/sourcetools.so.avx512
