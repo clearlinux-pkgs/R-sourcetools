@@ -4,7 +4,7 @@
 #
 Name     : R-sourcetools
 Version  : 0.1.6
-Release  : 21
+Release  : 22
 URL      : https://cran.r-project.org/src/contrib/sourcetools_0.1.6.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/sourcetools_0.1.6.tar.gz
 Summary  : Tools for Reading, Tokenizing and Parsing R Code
