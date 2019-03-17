@@ -4,19 +4,19 @@
 #
 Name     : R-sourcetools
 Version  : 0.1.7
-Release  : 31
+Release  : 32
 URL      : https://cran.r-project.org/src/contrib/sourcetools_0.1.7.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/sourcetools_0.1.7.tar.gz
 Summary  : Tools for Reading, Tokenizing and Parsing R Code
 Group    : Development/Tools
 License  : MIT
-Requires: R-sourcetools-lib
-BuildRequires : clr-R-helpers
+Requires: R-sourcetools-lib = %{version}-%{release}
+Requires: R-assertthat
+BuildRequires : R-assertthat
+BuildRequires : buildreq-R
 
 %description
-'sourcetools' package provides both an R and C++ interface for the tokenization
-    of R code, and helpers for interacting with the tokenized representation of R
-    code.
+[![Travis-CI Build Status](https://travis-ci.org/kevinushey/sourcetools.svg?branch=master)](https://travis-ci.org/kevinushey/sourcetools) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/kevinushey/sourcetools?branch=master&svg=true)](https://ci.appveyor.com/project/kevinushey/sourcetools)
 
 %package lib
 Summary: lib components for the R-sourcetools package.
@@ -34,11 +34,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1524696409
+export SOURCE_DATE_EPOCH=1552797941
 
 %install
+export SOURCE_DATE_EPOCH=1552797941
 rm -rf %{buildroot}
-export SOURCE_DATE_EPOCH=1524696409
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -73,8 +73,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/library sourcetools|| : 
-cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
+R CMD check --no-manual --no-examples --no-codoc  sourcetools || :
 
 
 %files
@@ -131,10 +130,12 @@ cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 /usr/lib64/R/library/sourcetools/include/sourcetools/tokenization/Tokenizer.h
 /usr/lib64/R/library/sourcetools/include/sourcetools/tokenization/tokenization.h
 /usr/lib64/R/library/sourcetools/include/sourcetools/utf8/utf8.h
-/usr/lib64/R/library/sourcetools/libs/symbols.rds
+/usr/lib64/R/library/sourcetools/tests/testthat.R
+/usr/lib64/R/library/sourcetools/tests/testthat/helper-utf8.R
+/usr/lib64/R/library/sourcetools/tests/testthat/test-read.R
+/usr/lib64/R/library/sourcetools/tests/testthat/test-tokenize.R
 
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/R/library/sourcetools/libs/sourcetools.so
-/usr/lib64/R/library/sourcetools/libs/sourcetools.so.avx2
 /usr/lib64/R/library/sourcetools/libs/sourcetools.so.avx512
