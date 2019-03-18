@@ -4,14 +4,13 @@
 #
 Name     : R-sourcetools
 Version  : 0.1.7
-Release  : 33
+Release  : 34
 URL      : https://cran.r-project.org/src/contrib/sourcetools_0.1.7.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/sourcetools_0.1.7.tar.gz
 Summary  : Tools for Reading, Tokenizing and Parsing R Code
 Group    : Development/Tools
 License  : MIT
 Requires: R-sourcetools-lib = %{version}-%{release}
-Requires: R-assertthat
 BuildRequires : R-assertthat
 BuildRequires : buildreq-R
 
@@ -34,10 +33,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1552797941
+export SOURCE_DATE_EPOCH=1552939179
 
 %install
-export SOURCE_DATE_EPOCH=1552797941
+export SOURCE_DATE_EPOCH=1552939179
 rm -rf %{buildroot}
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
