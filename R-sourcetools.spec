@@ -4,7 +4,7 @@
 #
 Name     : R-sourcetools
 Version  : 0.1.7
-Release  : 37
+Release  : 38
 URL      : https://cran.r-project.org/src/contrib/sourcetools_0.1.7.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/sourcetools_0.1.7.tar.gz
 Summary  : Tools for Reading, Tokenizing and Parsing R Code
@@ -33,10 +33,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1552952258
+export SOURCE_DATE_EPOCH=1556466109
 
 %install
-export SOURCE_DATE_EPOCH=1552952258
+export SOURCE_DATE_EPOCH=1556466109
 rm -rf %{buildroot}
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -72,7 +72,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc  sourcetools || :
+R CMD check --no-manual --no-examples --no-codoc sourcetools || :
 
 
 %files
@@ -137,4 +137,3 @@ R CMD check --no-manual --no-examples --no-codoc  sourcetools || :
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/R/library/sourcetools/libs/sourcetools.so
-/usr/lib64/R/library/sourcetools/libs/sourcetools.so.avx512
