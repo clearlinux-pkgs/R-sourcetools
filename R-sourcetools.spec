@@ -4,7 +4,7 @@
 #
 Name     : R-sourcetools
 Version  : 0.1.7
-Release  : 39
+Release  : 40
 URL      : https://cran.r-project.org/src/contrib/sourcetools_0.1.7.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/sourcetools_0.1.7.tar.gz
 Summary  : Tools for Reading, Tokenizing and Parsing R Code
@@ -33,10 +33,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1556466109
+export SOURCE_DATE_EPOCH=1556483142
 
 %install
-export SOURCE_DATE_EPOCH=1556466109
+export SOURCE_DATE_EPOCH=1556483142
 rm -rf %{buildroot}
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
