@@ -4,18 +4,19 @@
 #
 Name     : R-sourcetools
 Version  : 0.1.7
-Release  : 44
+Release  : 45
 URL      : https://cran.r-project.org/src/contrib/sourcetools_0.1.7.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/sourcetools_0.1.7.tar.gz
 Summary  : Tools for Reading, Tokenizing and Parsing R Code
 Group    : Development/Tools
 License  : MIT
 Requires: R-sourcetools-lib = %{version}-%{release}
-BuildRequires : R-assertthat
 BuildRequires : buildreq-R
 
 %description
-[![Travis-CI Build Status](https://travis-ci.org/kevinushey/sourcetools.svg?branch=master)](https://travis-ci.org/kevinushey/sourcetools) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/kevinushey/sourcetools?branch=master&svg=true)](https://ci.appveyor.com/project/kevinushey/sourcetools)
+'sourcetools' package provides both an R and C++ interface for the tokenization
+    of R code, and helpers for interacting with the tokenized representation of R
+    code.
 
 %package lib
 Summary: lib components for the R-sourcetools package.
@@ -27,21 +28,22 @@ lib components for the R-sourcetools package.
 
 %prep
 %setup -q -c -n sourcetools
+cd %{_builddir}/sourcetools
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1556483142
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1589511516
 
 %install
-export SOURCE_DATE_EPOCH=1556483142
+export SOURCE_DATE_EPOCH=1589511516
 rm -rf %{buildroot}
-export LANG=C
+export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
+export FCFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
+export FFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
 export CXXFLAGS="$CXXFLAGS -O3 -flto -fno-semantic-interposition "
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -67,7 +69,7 @@ R CMD INSTALL --preclean --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} 
 cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 %{__rm} -rf %{buildroot}%{_datadir}/R/library/R.css
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
